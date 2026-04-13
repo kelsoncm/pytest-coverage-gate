@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import pathlib
 import re
 import sys
@@ -34,8 +35,25 @@ def read_baseline(baseline_path: pathlib.Path) -> float:
 
 
 def main() -> int:
-    coverage_xml_path = pathlib.Path("coverage.xml")
-    baseline_path = pathlib.Path(".coverage-baseline")
+    parser = argparse.ArgumentParser(
+        description="Coverage quality gate: compare current coverage against a stored baseline.",
+    )
+    parser.add_argument(
+        "--coverage-xml",
+        default="coverage.xml",
+        metavar="PATH",
+        help="Path to the coverage.xml report (default: coverage.xml)",
+    )
+    parser.add_argument(
+        "--baseline",
+        default=".coverage-baseline",
+        metavar="PATH",
+        help="Path to the baseline file (default: .coverage-baseline)",
+    )
+    args = parser.parse_args()
+
+    coverage_xml_path = pathlib.Path(args.coverage_xml)
+    baseline_path = pathlib.Path(args.baseline)
 
     try:
         current = read_current_coverage(coverage_xml_path)

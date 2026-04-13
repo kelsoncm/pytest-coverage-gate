@@ -50,6 +50,19 @@ repos:
       - id: pytest-coverage-gate
 ```
 
+If `coverage.xml` or `.coverage-baseline` are **not** in the repository root (e.g. they live under `src/`), pass custom paths via `args`:
+
+```yaml
+repos:
+  - repo: https://github.com/kelsoncm/pytest-coverage-gate
+    rev: v1.0.0
+    hooks:
+      - id: pytest-coverage-gate
+        args:
+          - --coverage-xml=src/coverage.xml
+          - --baseline=src/.coverage-baseline
+```
+
 ### 4. Run pre-commit
 
 ```bash
@@ -69,6 +82,12 @@ The script can also be run directly without pre-commit:
 ```bash
 pip install pytest-coverage-gate
 pytest-coverage-gate
+```
+
+Use `--coverage-xml` and `--baseline` to point to files in non-default locations:
+
+```bash
+pytest-coverage-gate --coverage-xml src/coverage.xml --baseline src/.coverage-baseline
 ```
 
 ## Example output
