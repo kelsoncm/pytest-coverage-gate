@@ -45,7 +45,7 @@ git add .coverage-baseline
 ```yaml
 repos:
   - repo: https://github.com/kelsoncm/pytest-coverage-gate
-    rev: v1.0.0   # use the latest tag
+    rev: v1.0.1   # use the latest tag
     hooks:
       - id: pytest-coverage-gate
 ```
@@ -55,7 +55,7 @@ If `coverage.xml` or `.coverage-baseline` are **not** in the repository root (e.
 ```yaml
 repos:
   - repo: https://github.com/kelsoncm/pytest-coverage-gate
-    rev: v1.0.0
+    rev: v1.0.1
     hooks:
       - id: pytest-coverage-gate
         args:
