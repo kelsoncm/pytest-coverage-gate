@@ -1,0 +1,13 @@
+- id: pytest-coverage-gate
+  name: pytest-coverage-gate
+  description: >-
+    Enforces a coverage quality gate by comparing the current coverage.xml
+    line-rate against the value stored in .coverage-baseline.
+    Fails if coverage regresses; updates the baseline when coverage improves.
+  entry: pytest-coverage-gate
+  language: python
+  language_version: python3
+  pass_filenames: false
+  always_run: true
+  require_serial: true
+  minimum_pre_commit_version: "2.9.0"
